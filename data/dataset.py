@@ -3,7 +3,7 @@ import os
 
 
 def _get_training_data(FLAGS):
-    ''' Buildind the input pipeline for training and inference using TFRecords files.
+    ''' Building the input pipeline for training and inference using TFRecords files.
     @return data only for the training
     @return data for the inference
     '''
