@@ -8,7 +8,7 @@ def _get_training_data(FLAGS):
     @return data for the inference
     '''
 
-    filenames=[FLAGS.tf_records_train_path+f for f in os.listdir(FLAGS.tf_records_train_path)]
+    filenames = [FLAGS.tf_records_train_path+f for f in os.listdir(FLAGS.tf_records_train_path)]
 
     dataset = tf.data.TFRecordDataset(filenames)
     dataset = dataset.map(parse)

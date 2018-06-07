@@ -15,7 +15,7 @@ tf.app.flags.DEFINE_integer('num_epoch', 1000,
 tf.app.flags.DEFINE_integer('batch_size', 32,
                             'Size of the training batch.')
 
-tf.app.flags.DEFINE_float('learning_rate',1.0,
+tf.app.flags.DEFINE_float('learning_rate', 1.0,
                           'Learning_Rate')
 
 tf.app.flags.DEFINE_integer('num_v', 3952,
@@ -30,7 +30,7 @@ tf.app.flags.DEFINE_integer('num_samples', 6039,
 tf.app.flags.DEFINE_integer('k', 10,
                            'Number of iterations during gibbs samling.')
 
-tf.app.flags.DEFINE_integer('eval_after',50,
+tf.app.flags.DEFINE_integer('eval_after', 50,
                             'Evaluate model after number of iterations.')
 
 FLAGS = tf.app.flags.FLAGS
@@ -83,11 +83,12 @@ def main(_):
                         for i in range(FLAGS.num_samples):
 
                             v_target = sess.run(x_test)[0]
+                            bool_mask = v_target >= 0
 
-                            if len(v_target[v_target>=0]) > 0:
+                            if len(v_target[bool_mask]) > 0:
 
                                 v_ = sess.run(v_infer)[0]
-                                acc = 1.0 - np.mean(np.abs(v_[v_target >= 0] - v_target[v_target >= 0]))
+                                acc = 1.0 - np.mean(np.abs(v_[bool_mask] - v_target[bool_mask]))
                                 acc_infer += acc
                                 num_valid_batches += 1
 
